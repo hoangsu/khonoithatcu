@@ -12,53 +12,14 @@ register_nav_menus(array(
 
 if(function_exists('register_sidebar')){
 	register_sidebar(array(
-		'name'=>'Home Right Slider',
-		'before_widget' => '',
-		'after_widget' => ''
+		'name'=>'Left Sidebar',
+		'before_title' => '<div class="hot-news-header">',
+		'after_title' => '</div>',
+		'before_widget' => '<div id="thongke12">',
+		'after_widget' => '<div class="right-block-bottom"></div></div>'
 	));
 	};
-if(function_exists('register_sidebar')){
-	register_sidebar(array(
-		'name'=>'Home Meltwater Sector News',
-		'before_widget' => '',
-		'after_widget' => ''
-	));
-	};
-if(function_exists('register_sidebar')){
-	register_sidebar(array(
-		'name'=>'Home right sidebar',
-		'before_widget' => '<div class="home_right_sidebar">',
-		'after_widget' => '</div>'
-	));
-	};
-if(function_exists('register_sidebar')){
-	register_sidebar(array(
-		'name'=>'News listing left sidebar',
-		'before_widget' => '<div class="sidebar_block">',
-		'after_widget' => '</div>'
-	));
-	};
-if(function_exists('register_sidebar')){
-	register_sidebar(array(
-		'name'=>'CTA left sidebar',
-		'before_widget' => '<div class="cta_button">',
-		'after_widget' => '</div>'
-	));
-	};
-if(function_exists('register_sidebar')){
-	register_sidebar(array(
-		'name'=>'Subcategories left sidebar',
-		'before_widget' => '<div class="sidebar_block">',
-		'after_widget' => '</div>'
-	));
-	};
-if(function_exists('register_sidebar')){
-	register_sidebar(array(
-		'name'=>'Subcategories mobile',
-		'before_widget' => '',
-		'after_widget' => ''
-	));
-	};
+
 function new_excerpt_more($more) {
        global $post;
 	return '...';
