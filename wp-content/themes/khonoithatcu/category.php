@@ -1,46 +1,47 @@
 <?php get_header(); ?>
-<div id="content" class="news_listing">
-<div class="inner">
-<h1 class="title"> <?php single_cat_title('',true); ?></h1>
-  <div class="left_sibar">
-    <?php dynamic_sidebar( 'News listing left sidebar' ); ?>
-  </div>
-  <div class="list_article">
+<div class="wrapper-body">
+<?php get_sidebar();?>
+  <div id="main-content">
+    <div id="con-main-content">
+      <div id="contenbg"> <a href="/product-category/thanh-ly-ban-ghe-van-phong/"> Thanh lý bàn ghế văn phòng </a>
+      </div>
+      <div class="block-tintuc-content">
+       <div class="block-tintuc-trong">
+        
+<div class="news-list1">
     <ul>
-      <?php if(have_posts()) : while(have_posts()) : the_post();  ?>
-      <li>
-         <a href="<?php the_permalink();?>" title="<?php the_title_attribute();?>"><?php the_post_thumbnail('category-thumb-list')?></a>
-        <div class="flowhidden">
-        <h3> <a href="<?php the_permalink();?>" title="<?php the_title_attribute();?>"><?php the_title(); ?></a></h3>
-        <span class="date"><?php the_time('j F, Y');echo('&nbsp;<span class="dot">&middot;</span>&nbsp;');the_category(', ');?> </span>
-          <div class="shortdes">
-          <?php the_excerpt();?>
-            </div>
-        <a class="readmore" href="<?php the_permalink() ?>">Read more</a>
-         </div>
-      </li> 
-	  <?php endwhile; ?>
+        
+                <li>
+                    <a title="Mua thanh lý nội thất văn phòng" class="news-title1" href="/DV/40/mua-thanh-ly-noi-that-van-phong.html"><img title="Mua thanh lý nội thất văn phòng" src="/images/tintuc/1372013154957mua-thanh-ly-noi-that-van-phong.jpg" alt="Mua thanh lý nội thất văn phòng"></a>
+                    <h2><a title="Mua thanh lý nội thất văn phòng" class="news-title1" href="/DV/40/mua-thanh-ly-noi-that-van-phong.html">
+                        Mua thanh lý nội thất văn phòng</a></h2>
+                    <p class="posted-time1">
+                        </p>
+                    <div class="news-desc1">
+                        Công Ty TNHH Phát Triển Công Nghệ Vững Bước Tương lai là công ty hoạt động trong nhiều lĩnh vực trong đó có lĩnh vực mua thanh lý nội thất văn phòng với giá cao. Công ty chúng tôi chuyên mua thanh lý những loại sau: Bàn nhân viên,bàn văn phòng, bàn g...
+                    </div>
+                    <a title="Mua thanh lý nội thất văn phòng" class="view-details1" href="/DV/40/mua-thanh-ly-noi-that-van-phong.html">
+                        Xem chi tiết...</a>
+                    <div class="article_seperator">
+                        &nbsp;</div>
+                </li>
+            
+                
+            
     </ul>
-     
-    <?php else : ?>
-    <p> There are no posts to display !</p>
-    <?php endif; ?>
-  
-  </div>
-    <div class="clear"></div>
-   <div class="paging"> 
- <?php if(function_exists('tw_pagination')) 
-    tw_pagination();
-?>
-    </div>
-      <div class="paging mobile">
-          <?php if(function_exists('tw_pagination'))
-          tw_pagination_mobile();
-          ?>
-    </div>
-   <div class="clear btop"> <a href="#header" class="backtotop">top</a></div>
-   </div>
 </div>
-<!-- /.container -->
+<div class="clear-left">
+    &nbsp;</div>
+<div class="pager"><div><span style="border: 1px solid #ccc; padding: 5px 10px;">Trang</span><span style="padding-left:5"></span><span><b>1</b>&nbsp;<a id="ctl00$ContentPlaceHolder1$ucNewsList$cpPager" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$ucNewsList$cpPager','2')">2</a></span></div></div>
 
-<?php get_footer(); ?>
+
+    </div>
+      </div>
+      <div class="block-boot-content"></div>
+    </div>
+    
+    
+  </div>
+  <div class="clear-both"> </div>
+</div>
+<?php get_footer();?>

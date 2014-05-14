@@ -19,6 +19,13 @@ if(function_exists('register_sidebar')){
 		'after_widget' => '<div class="right-block-bottom"></div></div>'
 	));
 	};
+if(function_exists('register_sidebar')){
+	register_sidebar(array(
+		'name'=>'Footer',
+		'before_widget' => '',
+		'after_widget' => ''
+	));
+	};
 
 function new_excerpt_more($more) {
        global $post;
