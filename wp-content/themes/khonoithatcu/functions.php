@@ -26,17 +26,23 @@ if(function_exists('register_sidebar')){
 		'after_widget' => ''
 	));
 	};
-
+if(function_exists('register_sidebar')){
+	register_sidebar(array(
+		'name'=>'List all products',
+		'before_widget' => '',
+		'after_widget' => ''
+	));
+	};
 function new_excerpt_more($more) {
        global $post;
 	return '...';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
-function custom_excerpt_length( $length ) {
-	return 25;
-}
-add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+//function custom_excerpt_length( $length ) {
+	//return 30;
+//}
+//add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
 function the_excerpt_max_charlength($charlength) {
 	$excerpt = get_the_excerpt();
@@ -57,17 +63,4 @@ function the_excerpt_max_charlength($charlength) {
 		echo $excerpt;
 	}
 }
-function my_wpcf7_form_elements($html) {
-	$text = '- Select type of enquiry -';
-	$html = str_replace('<option value="">---</option>', '<option value="">' . $text . '</option>', $html);
-	return $html;
-}
-add_filter('wpcf7_form_elements', 'my_wpcf7_form_elements');
-register_taxonomy('states', 'post',  array(
-    'hierarchical' => true, 'label' => 'All States',
-    'query_var' =>  true, 'rewrite' => true));
-register_taxonomy('mem_categories', 'post',  array(
-	'hierarchical' => true, 'label' => 'All Research Fields',
-	'query_var' =>  true, 'rewrite' => true));
-
 ?>

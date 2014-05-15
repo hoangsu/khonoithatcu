@@ -1,99 +1,61 @@
-
 <?php get_header(); ?>
 
-<div class="news_detail">
-<div class="inner">
-  <h1 class="title">
-    <?php the_title(); ?>
-  </h1>
-
-  <div class="content_slider"> </div>
-  <div class="left_sibar">
-      <?php if(get_field('cta_button')==true):?>
-      <div class="cta_button">
-        <h2 class="widgettitle"><?php the_field('title_cta'); ?></h2>
-      <div class="textwidget"><div class="cta_banner">
-       <?php the_field('content_cta'); ?></div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="wrapper-body">
+  <?php get_sidebar();?>
+  <div id="main-content">
+    <div id="con-main-content">
+      <?php if ( have_posts() ) : while ( have_posts()): the_post();?>
+      <div id="contenbg">
+        <?php if(function_exists('bcn_display'))
+    {
+        bcn_display();
+    }?>
       </div>
-    </div>
-    <?php endif;?>
-    
-    <div class="social_block clear">
-    <?php include(TEMPLATEPATH . '/social.php')?>
-    </div>
-  </div>
-  <div class="content_article" id="content" >
-  <?php if(have_posts()) : while(have_posts()) : the_post();  ?>
-    <?php the_content(); ?>
-    <?php if ( ! empty( $meta['title'] ) )
-$title = $meta['title'];?>
-    <?php endwhile; ?>  <?php endif; ?>
-
-    <?php         
-$summary = get_field('summary');
-$summarySize = size_format(filesize( get_attached_file( $summary['id'] ) ));
-
-$report = get_field('full_report');
-$reportSize = size_format(filesize( get_attached_file( $report['id'] ) ));
-
-?>
-
-<?php if($summary || $report) {?>
-  <div class="attachments">
-    <?php if($summary) {?>
- 
-      <a href="<?php echo $summary['url'] ?>"><span class="img_file"><img src="<?php bloginfo('template_url')?>/images/file_m.png"/></span>
-         <span class="flowhidden_file">
-          <span class="title_file">Summary</span><br>
-          <span class="size_file"><?php echo $summarySize;?></span>
-           </span>
-         </a>
-         <?php }?>
-    <?php if($report) {?>
-     <a href="<?php echo $report['url'] ?>"><span class="img_file"><img src="<?php bloginfo('template_url')?>/images/file_m.png"/></span>
-         <span class="flowhidden_file">
-          <span class="title_file">Full Report</span><br>
-          <span class="size_file"><?php echo $reportSize;?></span>
-           </span>
-         </a>
-         <?php }?>
-  </div>
-<?php }?>
-
-    <?php $attachments = new Attachments( 'attachments' ); /* pass the instance name */ ?>
-<?php if( $attachments->exist() ) : ?>
-  <div class="attachments">
-      <?php while( $attachments->get() ) : ?>
-      <a href="<?php echo $attachments->url(); ?>"><span class="img_file"><img src="<?php bloginfo('template_url')?>/images/file_m.png"/></span>
-      	 <span class="flowhidden_file">
-         	<span class="title_file"><?php echo $attachments->field( 'title' ); ?></span><br>
-         	<span class="size_file"><?php echo $attachments->subtype(); ?>&nbsp;<span class="size"><?php echo $attachments->filesize(); ?></span></span>
-           </span>
-         </a>
-     
-    <?php endwhile; ?>
-  </div>
-<?php endif; ?>
-
- <?php if(get_field('website')){?>
-       <div class="siteadd">
-          <a target="_blank" href="http://<?php the_field('website');?>"><?php the_field('website');?></a>
+      <div class="block-tintuc-content">
+        <div class="block-tintuc-trong">
+          <div class="news-title">
+            <h1>
+              <?php the_title();?>
+            </h1>
           </div>
-        <?php }?>
+          <div class="news-details">
+            <?php the_content();?>
+          </div>
+          <div class="clear-left"> &nbsp;</div>
+          <?php endwhile; ?>
+          <?php endif; ?>
+        </div>
+        <div class="fb-comments" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
+        <div class="other-news">
+          <?php
+$category= get_the_category(); // assign the variable as current category
+$categoryvariable = $category[0]->term_id;
+$query= 'cat=' . $categoryvariable. '&orderby=rand&posts_per_page=10'; // concatenate the query
+query_posts($query); // run the query
+?>
+          <h4> Các bài viết khác</h4>
+          <ul class="other-news">
+            <?php if (have_posts()) : ?>
+            <?php while (have_posts()) : the_post(); ?>
+            <li> <a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>">
+              <?php the_title(); ?>
+              </a> </li>
+            <?php endwhile; ?>
+            <?php endif ?>
+          </ul>
+        </div>
+      </div>
+      <div class="block-boot-content"></div>
+    </div>
   </div>
-
-  <div class="clear btop"> <a href="#header" class="backtotop">top</a></div>
-  </div>
+  <div class="clear-both"> </div>
 </div>
-<!-- /.container -->
-
-<?php get_footer(); ?>
-<script type="text/javascript">
-    jQuery(document).ready(function(e) {
-        jQuery('.mejs-mediaelement').each(function(){
-            var title = jQuery(this).find('audio').attr('title');
-            var a = jQuery(this).next().next().find('.mejs-playpause-button');
-            jQuery('<div id="title-audio">'+title+' -</div>').insertAfter(a);
-        })
-    })
-</script>
+<?php get_footer();?>
