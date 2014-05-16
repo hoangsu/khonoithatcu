@@ -4,7 +4,38 @@
   <?php get_sidebar();?>
   <div id="main-content">
     <div id="con-main-content">
-      <div id="contenbg"> <?php single_cat_title();?></div>
+      <div id="contenbg"> <?php if (is_search()) {?>
+        Hiển thị
+    <?php
+$num_cb = $wp_query->post_count;
+$id_cb = $paged;
+$r_cb=1;
+$startNum_cb = $r_cb;
+$endNum_cb = get_option( 'posts_per_page' );
+if($id_cb >=2) {
+  $s_cb=$id_cb-1;
+  $r_cb=($s_cb * get_option( 'posts_per_page' )) + 1;
+  $startNum_cb=$r_cb;
+  $endNum_cb=$startNum_cb + ($num_cb -1);
+}
+      global $wp_query;
+if (have_posts()) :
+ if($wp_query->found_posts<=get_option( 'posts_per_page' )){
+     echo $wp_query->found_posts;
+ }else{
+     echo "<b>$startNum_cb-$endNum_cb</b>";
+ }
+
+endif;
+
+$totaltime= number_format($load,4);
+
+?>
+    của 
+  <?php
+echo $wp_query->found_posts;?>
+    Kết quả cho từ khóa '<?php echo strip_tags($s); ?>'
+      <?php } else { single_cat_title();}?></div>
       <div class="block-tintuc-content">
         <div class="block-tintuc-trong">
                     <ul class="product-list">
@@ -36,8 +67,8 @@
                 <?php $price = get_post_meta( get_the_ID(), '_regular_price',true);
 					  $sale = get_post_meta( get_the_ID(), '_sale_price', true); 
 					  ?>
-                <p class="p-price">Giá KM: <span class="price-new"><b><?php if($sale == '') {?>Liên hệ <?php } else { echo $sale; }?></b></span></p>
-                <p class="p-price">Giá cũ: <span class="price-old"><b><?php if($price == '') {?>Liên hệ <?php } else { echo $price; }?></b></span></p>
+                <p class="p-price">Giá KM: <span class="price-new"><b><?php if($sale == '') {?>Liên hệ <?php } else { echo $sale; }?>đ</b></span></p>
+                <p class="p-price">Giá cũ: <span class="price-old"><b><?php if($price == '') {?>Liên hệ <?php } else { echo $price; }?>đ</b></span></p>
               </li>
 				<?php endwhile; // end of the loop. ?>
 

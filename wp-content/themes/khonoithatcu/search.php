@@ -1,8 +1,13 @@
-<?php get_header(); ?>
 
-<div id="content" class="news_listing search_page">
-<div class="inner">
-  <h1 class="title">Showing
+  
+ <?php get_header(); ?>
+
+<div class="wrapper-body">
+  <?php get_sidebar();?>
+  <div id="main-content">
+    <div id="con-main-content">
+      
+      <div id="contenbg"><h1 class="title">Showing
     <?php
 $num_cb = $wp_query->post_count;
 $id_cb = $paged;
@@ -29,54 +34,60 @@ $totaltime= number_format($load,4);
 
 ?>
     of 
-	<?php
+  <?php
 echo $wp_query->found_posts;?>
     Results for '<?php echo strip_tags($s); ?>'
-  </h1>
-  <div class="searchform_results">
-    <form role="search" method="get" id="searchform_results" action="<?php echo home_url( '/' ); ?>">
-      <div>
-        <label class="screen-reader-text" for="s">Search again:</label>
-        <input type="text" class="input_text" placeholder="Enter search term" value="" name="s" id="s1" />
-        <input type="submit" id="searchsubmit_results" class="button" value="Search" />
-      </div>
-    </form>
-  </div>
-  <div class="list_article">
-    <ul>
-      <?php if(have_posts()) : while(have_posts()) : the_post();  ?>
-      <li>
-       <a href="<?php the_permalink();?>" title="<?php the_title_attribute();?>"><?php the_post_thumbnail('thumbnail') ?></a>
-        <div class="flowhidden">
-        <span class="cat">
-            <?php the_category(', ');?>
-            </span>
-         <h3><a href="<?php the_permalink();?>" title="<?php the_title_attribute();?>"><?php the_title();?></a></h3>
-         
-           <div class="shortdes"><?php the_excerpt(); ?></div>
-          <a class="readmore" href="<?php the_permalink();?>">Read more</a>
-           </div>
-      </li>
-      <?php endwhile; ?>
-      <?php else : ?>
-      <p> There are no results!</p>
-      <?php endif; ?>
-    </ul>
-  </div>
-  <div class="clear"></div>
-  <div class="paging">
-    <?php if(function_exists('tw_pagination')) 
-    tw_pagination();
-?>
-  </div>
-    <div class="paging mobile">
-          <?php if(function_exists('tw_pagination'))
-          tw_pagination_mobile();
-          ?>
-    </div>
-  <div class="clear btop"> <a href="#header" class="backtotop">top</a></div>
-  </div>
-</div>
-<!-- /.container -->
+  </h1></div>
+      <div class="block-tintuc-content">
+        <div class="block-tintuc-trong">
+          <div class="news-list1">
+            <ul>
+              <?php if ( have_posts() ) : while ( have_posts()): the_post();?>
+              <li> <a title="<?php the_title_attribute(); ?>" class="news-title1" href="<?php the_permalink() ?>">
+                <?php the_post_thumbnail('thumbnail'); ?>
+                </a>
+                <h2><a title="Mua thanh lý nội thất văn phòng" class="news-title1" href="<?php the_permalink(); ?>">
+                  <?php the_title() ?>
+                  </a></h2>
+                <p class="posted-time1"> </p>
+                <div class="news-desc1">
+                  <?php the_excerpt(); ?>
+                </div>
+                <a title="Mua thanh lý nội thất văn phòng" class="view-details1" href="/DV/40/mua-thanh-ly-noi-that-van-phong.html"> Xem chi tiết...</a>
+                <div class="article_seperator"> &nbsp;</div>
+              </li>
+              <?php endwhile; ?>
+            </ul>
+            <?php else:  ?>
+            <p>
+              <?php _e('Sorry, no posts matched your criteria.'); ?>
+            </p>
+            <?php endif; ?>
+          </div>
+          <div class="clear-left"> &nbsp;</div>
+          <div class="pager">
+            <div>
+              <?php
+global $wp_query;
 
-<?php get_footer(); ?>
+$big = 999999999; // need an unlikely integer
+if ( $wp_query->max_num_pages > 1 ) {?>
+        <span style="border: 1px solid #ccc; padding: 5px 10px;">Trang</span><span>
+<?php    } 
+echo paginate_links( array(
+  'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+  'format' => '?paged=%#%',
+  'current' => max( 1, get_query_var('paged') ),
+  'total' => $wp_query->max_num_pages
+) );
+?>
+              </span></div>
+          </div>
+        </div>
+      </div>
+      <div class="block-boot-content"></div>
+    </div>
+  </div>
+  <div class="clear-both"> </div>
+</div>
+<?php get_footer();?>

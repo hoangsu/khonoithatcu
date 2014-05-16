@@ -36,8 +36,8 @@
                 <?php $price = get_post_meta( get_the_ID(), '_regular_price',true);
 					  $sale = get_post_meta( get_the_ID(), '_sale_price', true); 
 					  ?>
-                <p class="p-price">Giá KM: <span class="price-new"><b><?php if($sale == '') {?>Liên hệ <?php } else { echo $sale; }?></b></span></p>
-                <p class="p-price">Giá cũ: <span class="price-old"><b><?php if($price == '') {?>Liên hệ <?php } else { echo $price; }?></b></span></p>
+                <p class="p-price">Giá KM: <span class="price-new"><b><?php if($sale == '') {?>Liên hệ <?php } else { echo $sale; }?>đ</b></span></p>
+                <p class="p-price">Giá cũ: <span class="price-old"><b><?php if($price == '') {?>Liên hệ <?php } else { echo $price; }?>đ</b></span></p>
               </li>
               <?php endwhile; ?>
               <?php wp_reset_query(); ?>

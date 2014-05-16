@@ -26,7 +26,7 @@ if ( ! empty( $tabs ) ) : ?>
 				<li class="<?php echo $key ?>_tab">
 					<a href="#tab-<?php echo $key ?>"><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', $tab['title'], $key ) ?></a>
 				</li>
-
+				<li class="comment_tab"><a href="#tab-comment">Bình luận</a></li>
 			<?php endforeach; ?>
 		</ul>
 		<?php foreach ( $tabs as $key => $tab ) : ?>
@@ -36,6 +36,10 @@ if ( ! empty( $tabs ) ) : ?>
 			</div>
 
 		<?php endforeach; ?>
+		<div class="panel entry-content" id="tab-comment">
+        <div class="fb-comments" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
+				
+			</div>
 	</div>
 
 <?php endif; ?>
