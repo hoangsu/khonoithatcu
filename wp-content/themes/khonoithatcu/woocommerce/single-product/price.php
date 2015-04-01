@@ -15,8 +15,8 @@ global $post, $product;
  <?php $price = get_post_meta( get_the_ID(), '_regular_price',true);
 					  $sale = get_post_meta( get_the_ID(), '_sale_price', true); 
 					  ?>
-                <p class="p-price">Giá KM: <span class="price-new"><b><?php if($sale == '') {?>Liên hệ <?php } else { echo $sale; }?>đ</b></span></p>
-                <p class="p-price">Giá cũ: <span class="price-old"><b><?php if($price == '') {?>Liên hệ <?php } else { echo $price; }?>đ</b></span></p>
+                <p class="p-price">Giá KM: <span class="price-new"><b><?php if($sale == '') {?>Liên hệ <?php } else { echo $sale."đ"; }?></b></span></p>
+                <p class="p-price">Giá cũ: <span class="price-old"><b><?php if($price == '') {?>Liên hệ <?php } else { echo $price."đ"; }?></b></span></p>
 	<!-- <p class="price"><?php echo $product->get_price_html(); ?></p> -->
 	<?php $product_status = get_post_meta( get_the_ID(), '_stock_status',true);?>
 	<p>Kho hàng: <?php if ($product_status == 'instock') { echo "Còn hàng";} else {echo "Hết hàng";}?></p>
